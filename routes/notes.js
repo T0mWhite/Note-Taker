@@ -1,3 +1,4 @@
+// Added dependencies
 const notes = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
 const {
@@ -6,8 +7,6 @@ const {
   writeToFile,
 } = require("../helpers/fsUtils");
 
-// const { response } = require('.');
-
 // Get Route for retrieving notes
 notes.get("/", (req, res) => {
   readFromFile("./db/db.json").then((notes_data) =>
@@ -15,16 +14,16 @@ notes.get("/", (req, res) => {
   );
 });
 
-// GET Route for a specific tip
-notes.get('/:id', (req, res) => {
+// Get route for specific note by id
+notes.get("/:id", (req, res) => {
   const noteId = req.params.id;
-  readFromFile('./db/notes.json')
-    .then((notes) => JSON.parse(notes))
+  readFromFile("./db/notes.json")
+    .then((notes_data) => JSON.parse(notes_data))
     .then((json) => {
-      const result = json.filter((note) => note.id === noteId);
+      const result = json.filter((note_data) => note_data.id === noteId);
       return result.length > 0
         ? res.json(result)
-        : res.json('🕳 No note with that ID 🕳');
+        : res.json("🕳 No note with that ID 🕳");
     });
 });
 
@@ -34,7 +33,8 @@ notes.delete("/:id", (req, res) => {
   readFromFile("./db/db.json")
     .then((notes) => JSON.parse(notes))
     .then((json) => {
-      // Make a new array of all notes except the one with the ID provided in the URL
+      // Creates an array of the notes excluding the one in the URL.
+      // Said note id comes from the event handler in public/index.js
       const result = json.filter((note) => note.id !== noteId);
 
       // Save that array to the filesystem
