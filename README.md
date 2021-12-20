@@ -17,7 +17,7 @@ A simple app to save notes for later use. Saves information to a server to avoid
   
   ## Installation
   
- Access it from this [heroku link](https://git.heroku.com/salty-badlands-08193.git). Clone it from the [github repository](https://github.com/T0mWhite/Note-Taker) and run it locally using node.js.
+ Access it from this [heroku link](https://salty-badlands-08193.herokuapp.com/). Clone it from the [github repository](https://github.com/T0mWhite/Note-Taker) and run it locally using node.js.
   
   ## Usage
   
